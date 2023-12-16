@@ -45,7 +45,7 @@ namespace LaboratoryExerciseSQL_SelectInsertandUpdate
             if (txtStudentId.Text == "" || txtFirstName.Text == "" || txtMiddlName.Text ==  "" || txtLastName.Text == "" || txtAge.Text == ""
                 || string.IsNullOrEmpty(Convert.ToString(cbGender.Text)) || string.IsNullOrEmpty(Convert.ToString(cbProgram.Text)))
             {
-                MessageBox.Show("Filup the ff. to procede","Error",MessageBoxButtons.OK);
+                MessageBox.Show("Filup the ff.","Error",MessageBoxButtons.OK);
             }
             else
             {
