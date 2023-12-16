@@ -32,6 +32,10 @@ namespace LaboratoryExerciseSQL_SelectInsertandUpdate
         {
             FrmUpdateMember fupdate = new FrmUpdateMember();
             fupdate.ShowDialog();
+
+
+
+
         }
 
         private void btnX_Click(object sender, EventArgs e)

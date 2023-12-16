@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace LaboratoryExerciseSQL_SelectInsertandUpdate
 {
@@ -16,12 +17,16 @@ namespace LaboratoryExerciseSQL_SelectInsertandUpdate
         public FrmUpdateMember()
         {
             InitializeComponent();
+         
+
         }
 
         private void FrmUpdateMember_Load(object sender, EventArgs e)
         {
             comboboxes();
             stud();
+           // textboxes();
+
         }
 
 
@@ -78,21 +83,67 @@ namespace LaboratoryExerciseSQL_SelectInsertandUpdate
 
         ClubRegistrationQuery clubRegistrationQuery = new ClubRegistrationQuery(); 
 
-        private void stud()
+        public void textboxes()
         {
-            string sid = clubRegistrationQuery.search();
+            clubRegistrationQuery.DisplayText();
+          
+            txtFirstName.Text = clubRegistrationQuery._FirstName;
+            txtMiddlName.Text = clubRegistrationQuery._MiddleName;
+            txtLastName.Text = clubRegistrationQuery._LastName;
+            txtAge.Text = Convert.ToString(clubRegistrationQuery._Age);
+            cbGender.Text = clubRegistrationQuery._Gender;
+            cbProgram.Text = clubRegistrationQuery._Program;
 
-            ArrayList arr = new ArrayList();
-            arr.Add(sid);
+          
 
-          foreach(string id in arr)
-            {
-                cbStudentId.Items.Add(id);
-            }
-            
         }
 
+        private void stud()
+        {
+
+            clubRegistrationQuery.DisplayList();
+            cbStudentId.DataSource = clubRegistrationQuery.bindingSource;
+            cbStudentId.DisplayMember = "Student_Id";
+
+            clubRegistrationQuery.sId = cbStudentId.Text;
+
+        }
+
+        private int ID, Age;
+        private string FirstName, MiddleName, LastName, Gender, Program;
+
+        private void cbStudentId_MouseClick(object sender, MouseEventArgs e)
+        {
+            textboxes();
+            stud();
+        }
+
+        private long StudentId;
+
+        private void btnConfirm_Click(object sender, EventArgs e)
+        {
+          
+
+            if (cbStudentId.Text == "" || txtFirstName.Text == "" || txtMiddlName.Text == "" || txtLastName.Text == "" || txtAge.Text == ""
+               || string.IsNullOrEmpty(Convert.ToString(cbGender.Text)) || string.IsNullOrEmpty(Convert.ToString(cbProgram.Text)))
+            {
+                MessageBox.Show("Filup the ff.", "Error", MessageBoxButtons.OK);
+            }
+            else
+            {
+              
+                StudentId = long.Parse(cbStudentId.Text);
+                FirstName = txtFirstName.Text;
+                MiddleName = txtMiddlName.Text;
+                LastName = txtLastName.Text;
+                Age = int.Parse(txtAge.Text);
+                Gender = cbGender.Text;
+                Program = cbProgram.Text;
 
 
+                clubRegistrationQuery.updateStudents(StudentId, FirstName, MiddleName, LastName, Age, Gender, Program);
+            }
+
+        }
     }
 }

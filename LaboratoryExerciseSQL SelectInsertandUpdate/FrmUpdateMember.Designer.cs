@@ -174,6 +174,7 @@
             this.btnConfirm.TabIndex = 41;
             this.btnConfirm.Text = "Confirm";
             this.btnConfirm.UseVisualStyleBackColor = false;
+            this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
             // 
             // btnX
             // 
@@ -198,6 +199,7 @@
             this.cbStudentId.Name = "cbStudentId";
             this.cbStudentId.Size = new System.Drawing.Size(225, 24);
             this.cbStudentId.TabIndex = 43;
+            this.cbStudentId.MouseClick += new System.Windows.Forms.MouseEventHandler(this.cbStudentId_MouseClick);
             // 
             // FrmUpdateMember
             // 
@@ -223,8 +225,9 @@
             this.Controls.Add(this.label5);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmUpdateMember";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmUpdateMember";
             this.Load += new System.EventHandler(this.FrmUpdateMember_Load);
             this.ResumeLayout(false);
@@ -249,6 +252,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btnConfirm;
         private System.Windows.Forms.Button btnX;
-        private System.Windows.Forms.ComboBox cbStudentId;
+        public System.Windows.Forms.ComboBox cbStudentId;
     }
 }

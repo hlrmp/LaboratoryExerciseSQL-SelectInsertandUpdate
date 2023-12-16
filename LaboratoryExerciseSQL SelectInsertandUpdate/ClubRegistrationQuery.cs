@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Security.Cryptography.X509Certificates;
 using System.Drawing.Text;
 using System.Collections;
+using Microsoft.SqlServer.Server;
 
 namespace LaboratoryExerciseSQL_SelectInsertandUpdate
 {
@@ -47,13 +48,44 @@ namespace LaboratoryExerciseSQL_SelectInsertandUpdate
             sqlAdapter.Fill(dataTable);
             bindingSource.DataSource = dataTable;
 
+            sqlConnect.Open();
+            sqlCommand = new SqlCommand(ViewClubMembers, sqlConnect);
+            sqlReader = sqlCommand.ExecuteReader();
+            sqlReader.Read();
+
+
+
+            sqlConnect.Close();
+
+            return true;
+
+        }
+    
+        public string sId;
+        public bool DisplayText()
+        {
+            string ViewClubMembers = "select Student_Id , FirstName , MiddleName , LastName , Age, Gender , Program from ClubMembers where Student_Id = '"+sId+"' ";
+            sqlAdapter = new SqlDataAdapter(ViewClubMembers, sqlConnect);
+
+            dataTable.Clear();
+            sqlAdapter.Fill(dataTable);
+            bindingSource.DataSource = dataTable;
 
             sqlConnect.Open();
 
-            SqlCommand command;
-            command = new SqlCommand(ViewClubMembers, sqlConnect);
-            sqlReader = command.ExecuteReader();
+         
+            sqlCommand = new SqlCommand(ViewClubMembers, sqlConnect);
+            sqlReader = sqlCommand.ExecuteReader();
             sqlReader.Read();
+
+            _FirstName = sqlReader[1].ToString();
+            _MiddleName = sqlReader[2].ToString();
+            _LastName = sqlReader[3].ToString();
+            _Age = int.Parse(sqlReader[4].ToString());
+            _Gender = sqlReader[5].ToString();
+            _Program = sqlReader[6].ToString();
+
+
 
             sqlConnect.Close();
 
@@ -61,31 +93,8 @@ namespace LaboratoryExerciseSQL_SelectInsertandUpdate
 
         }
 
-        public string search()
-        {
-            string ViewClubMembers = "select Student_Id from ClubMembers";
 
-            sqlConnect.Open();
 
-            SqlCommand command;
-            command = new SqlCommand(ViewClubMembers, sqlConnect);
-            sqlReader = command.ExecuteReader();
-            sqlReader.Read();
-            string re = "";
-
-          //  re = sqlReader[0].ToString();
-            
-            while(sqlReader.Read())
-            {
-                re = sqlReader[0].ToString();                
-
-            }
-
-            sqlConnect.Close();
-
-            return re;
-
-        }
 
         public bool RegisterStudent(int ID, long StudentID, string FirstName, string
                                     MiddleName, string LastName, int Age, string Gender, string Program)
@@ -105,6 +114,27 @@ namespace LaboratoryExerciseSQL_SelectInsertandUpdate
             sqlConnect.Close();
             return true;
         }
+
+         public bool updateStudents(long StudentID ,string FirstName, string MiddleName, string LastName, int Age, string Gender, string Program)
+        {
+            string query = "Update ClubMembers Set FirstName =  @FristName, MiddleName = @MiddleName, LastName = @LastName, Age = @Age, Gender = @Gender, Program = @Program Where Student_ID = " + StudentID+"";
+
+            sqlCommand.Parameters.Add("@FirstName", SqlDbType.VarChar).Value = FirstName;
+            sqlCommand.Parameters.Add("@MiddleName", SqlDbType.VarChar).Value = MiddleName;
+            sqlCommand.Parameters.Add("@LastName", SqlDbType.VarChar).Value = LastName;
+            sqlCommand.Parameters.Add("@Age", SqlDbType.Int).Value = Age;
+            sqlCommand.Parameters.Add("@Gender", SqlDbType.VarChar).Value = Gender;
+            sqlCommand.Parameters.Add("@Program", SqlDbType.VarChar).Value = Program;
+
+            sqlConnect.Open();
+            sqlCommand.ExecuteNonQuery();
+            sqlConnect.Close();
+
+            return true;
+        }
+
+
+
 
     }
 }
