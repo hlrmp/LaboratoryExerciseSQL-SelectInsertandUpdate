@@ -71,20 +71,20 @@ namespace LaboratoryExerciseSQL_SelectInsertandUpdate
             command = new SqlCommand(ViewClubMembers, sqlConnect);
             sqlReader = command.ExecuteReader();
             sqlReader.Read();
-            string re;
+            string re = "";
 
-              sqlAdapter = new SqlDataAdapter(ViewClubMembers , sqlConnect);
-              DataTable dt = new DataTable();
+          //  re = sqlReader[0].ToString();
+            
+            while(sqlReader.Read())
+            {
+                re = sqlReader[0].ToString();                
+
+            }
 
             sqlConnect.Close();
 
-            re = Convert.ToString( sqlAdapter.Fill(dt) );
-    
-                      
+            return re;
 
-
-
-             return re;
         }
 
         public bool RegisterStudent(int ID, long StudentID, string FirstName, string
