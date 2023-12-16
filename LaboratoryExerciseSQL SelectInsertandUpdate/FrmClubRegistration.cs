@@ -42,15 +42,25 @@ namespace LaboratoryExerciseSQL_SelectInsertandUpdate
 
         private void button3_Click(object sender, EventArgs e)
         {
-            StudentId = long.Parse(txtStudentId.Text);
-            FirstName = txtFirstName.Text;
-            MiddleName = txtMiddlName.Text;
-            LastName = txtLastName.Text;
-            Age = int.Parse(txtAge.Text);
-            Gender = cbGender.Text;
-            Program = cbProgram.Text;
+            if (txtStudentId.Text == "" || txtFirstName.Text == "" || txtMiddlName.Text ==  "" || txtLastName.Text == "" || txtAge.Text == ""
+                || string.IsNullOrEmpty(Convert.ToString(cbGender.Text)) || string.IsNullOrEmpty(Convert.ToString(cbProgram.Text)))
+            {
+                MessageBox.Show("Filup the ff. to procede","Error",MessageBoxButtons.OK);
+            }
+            else
+            {
 
-            clubRegistrationQuery.RegisterStudent(ID: RegistrationID() ,StudentId, FirstName, MiddleName, LastName, Age, Gender, Program);
+                StudentId = long.Parse(txtStudentId.Text);
+                FirstName = txtFirstName.Text;
+                MiddleName = txtMiddlName.Text;
+                LastName = txtLastName.Text;
+                Age = int.Parse(txtAge.Text);
+                Gender = cbGender.Text;
+                Program = cbProgram.Text;
+
+                clubRegistrationQuery.RegisterStudent(ID: RegistrationID(), StudentId, FirstName, MiddleName, LastName, Age, Gender, Program);
+            }
+            
         }
       
 
@@ -67,6 +77,8 @@ namespace LaboratoryExerciseSQL_SelectInsertandUpdate
         {
             clubRegistrationQuery.DisplayList();
             dataGridView1.DataSource = clubRegistrationQuery.bindingSource;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
 
 
         }
