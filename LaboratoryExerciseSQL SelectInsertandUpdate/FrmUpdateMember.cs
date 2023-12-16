@@ -76,14 +76,11 @@ namespace LaboratoryExerciseSQL_SelectInsertandUpdate
             this.Hide();
         }
 
-        private ClubRegistrationQuery clubRegistrationQuery;
+        ClubRegistrationQuery clubRegistrationQuery = new ClubRegistrationQuery(); 
 
         private void stud()
         {
-
-           txtFirstName.Text = clubRegistrationQuery.search();
-          
-           /* string sid = clubRegistrationQuery.search();
+            string sid = clubRegistrationQuery.search();
 
             ArrayList arr = new ArrayList();
             arr.Add(sid);
@@ -91,7 +88,7 @@ namespace LaboratoryExerciseSQL_SelectInsertandUpdate
           foreach(string id in arr)
             {
                 cbStudentId.Items.Add(id);
-            }*/
+            }
             
         }
 

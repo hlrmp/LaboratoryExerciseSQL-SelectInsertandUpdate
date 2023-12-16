@@ -18,7 +18,7 @@ namespace LaboratoryExerciseSQL_SelectInsertandUpdate
         }
 
         private ClubRegistrationQuery clubRegistrationQuery;
-        private int ID, Age, count;
+        private int ID, Age, count = 1;
         private string FirstName, MiddleName,LastName, Gender, Program;
         private long StudentId;
 
@@ -84,7 +84,7 @@ namespace LaboratoryExerciseSQL_SelectInsertandUpdate
         }
         public int RegistrationID()
         {
-            return 1 + count;
+            return ++count;
         }
 
         public void comboboxes()

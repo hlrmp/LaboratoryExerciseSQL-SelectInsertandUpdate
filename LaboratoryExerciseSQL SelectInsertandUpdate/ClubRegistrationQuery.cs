@@ -63,7 +63,7 @@ namespace LaboratoryExerciseSQL_SelectInsertandUpdate
 
         public string search()
         {
-            string ViewClubMembers = "select Student_Id , FirstName , MiddleName , LastName , Age, Gender , Program from ClubMembers";
+            string ViewClubMembers = "select Student_Id from ClubMembers";
 
             sqlConnect.Open();
 
@@ -71,13 +71,20 @@ namespace LaboratoryExerciseSQL_SelectInsertandUpdate
             command = new SqlCommand(ViewClubMembers, sqlConnect);
             sqlReader = command.ExecuteReader();
             sqlReader.Read();
+            string re;
 
-            string re = sqlReader[0].ToString();
-          
+              sqlAdapter = new SqlDataAdapter(ViewClubMembers , sqlConnect);
+              DataTable dt = new DataTable();
+
             sqlConnect.Close();
 
-            return re;
+            re = Convert.ToString( sqlAdapter.Fill(dt) );
+    
+                      
 
+
+
+             return re;
         }
 
         public bool RegisterStudent(int ID, long StudentID, string FirstName, string
