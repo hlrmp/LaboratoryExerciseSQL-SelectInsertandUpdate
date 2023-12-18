@@ -61,7 +61,7 @@ namespace LaboratoryExerciseSQL_SelectInsertandUpdate
 
         }
     
-        public string sId;
+        public string sId ;
         public bool DisplayText()
         {
             string ViewClubMembers = "select Student_Id , FirstName , MiddleName , LastName , Age, Gender , Program from ClubMembers where Student_Id = '"+sId+"' ";
@@ -115,16 +115,20 @@ namespace LaboratoryExerciseSQL_SelectInsertandUpdate
             return true;
         }
 
-         public bool updateStudents(long StudentID ,string FirstName, string MiddleName, string LastName, int Age, string Gender, string Program)
+         public bool updateStudents(long StudentID ,string First_Name, string Middle_Name, string Last_Name, int age, string gender, string program)
         {
-            string query = "Update ClubMembers Set FirstName =  @FristName, MiddleName = @MiddleName, LastName = @LastName, Age = @Age, Gender = @Gender, Program = @Program Where Student_ID = " + StudentID+"";
 
-            sqlCommand.Parameters.Add("@FirstName", SqlDbType.VarChar).Value = FirstName;
-            sqlCommand.Parameters.Add("@MiddleName", SqlDbType.VarChar).Value = MiddleName;
-            sqlCommand.Parameters.Add("@LastName", SqlDbType.VarChar).Value = LastName;
-            sqlCommand.Parameters.Add("@Age", SqlDbType.Int).Value = Age;
-            sqlCommand.Parameters.Add("@Gender", SqlDbType.VarChar).Value = Gender;
-            sqlCommand.Parameters.Add("@Program", SqlDbType.VarChar).Value = Program;
+            sqlCommand.Parameters.Clear();
+
+            sqlCommand.CommandText = "Update ClubMembers Set FirstName =  @FirstName, MiddleName = @MiddleName, LastName = @LastName, Age = @Age, Gender = @Gender, Program = @Program Where Student_ID = " + StudentID+"";
+          
+          
+            sqlCommand.Parameters.Add("@FirstName", First_Name);
+            sqlCommand.Parameters.Add("@MiddleName", Middle_Name);
+            sqlCommand.Parameters.Add("@LastName", Last_Name);
+            sqlCommand.Parameters.Add("@Age", age);
+            sqlCommand.Parameters.Add("@Gender", gender);
+            sqlCommand.Parameters.Add("@Program", program);
 
             sqlConnect.Open();
             sqlCommand.ExecuteNonQuery();

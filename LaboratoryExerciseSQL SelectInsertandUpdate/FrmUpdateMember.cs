@@ -26,7 +26,8 @@ namespace LaboratoryExerciseSQL_SelectInsertandUpdate
             comboboxes();
             stud();
             // textboxes();
-        //    cbStudentId.Text =  clubRegistrationQuery.sId;
+            clubRegistrationQuery.sId = cbStudentId.Text;  // something wrong
+
 
 
         }
@@ -89,7 +90,7 @@ namespace LaboratoryExerciseSQL_SelectInsertandUpdate
         {
             clubRegistrationQuery.DisplayText();
 
-             clubRegistrationQuery.DisplayText();
+             
 
             txtFirstName.Text = clubRegistrationQuery._FirstName;
             txtMiddlName.Text = clubRegistrationQuery._MiddleName;
@@ -98,8 +99,8 @@ namespace LaboratoryExerciseSQL_SelectInsertandUpdate
             cbGender.Text = clubRegistrationQuery._Gender;
             cbProgram.Text = clubRegistrationQuery._Program;
 
-          
-             
+           
+
         }
 
         private void stud()
@@ -116,19 +117,27 @@ namespace LaboratoryExerciseSQL_SelectInsertandUpdate
         private int ID, Age;
         private string FirstName, MiddleName, LastName, Gender, Program;
 
+        private void cbStudentId_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            clubRegistrationQuery.sId = cbStudentId.Text;  // something wrong
+            // stud();
+        }
+
         private void cbStudentId_SelectedValueChanged(object sender, EventArgs e)
         {
 
             clubRegistrationQuery.sId = cbStudentId.Text;  // something wrong
-
+            
         }
 
         private void cbStudentId_MouseClick(object sender, MouseEventArgs e)
         {
-            textboxes();
-            stud();
            
-        }
+           
+             textboxes();
+          
+
+        } 
 
         private long StudentId;
 

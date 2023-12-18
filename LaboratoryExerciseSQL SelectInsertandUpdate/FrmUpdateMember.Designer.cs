@@ -199,6 +199,7 @@
             this.cbStudentId.Name = "cbStudentId";
             this.cbStudentId.Size = new System.Drawing.Size(225, 24);
             this.cbStudentId.TabIndex = 43;
+            this.cbStudentId.SelectedIndexChanged += new System.EventHandler(this.cbStudentId_SelectedIndexChanged);
             this.cbStudentId.SelectedValueChanged += new System.EventHandler(this.cbStudentId_SelectedValueChanged);
             this.cbStudentId.MouseClick += new System.Windows.Forms.MouseEventHandler(this.cbStudentId_MouseClick);
             // 
@@ -228,7 +229,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmUpdateMember";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "FrmUpdateMember";
             this.Load += new System.EventHandler(this.FrmUpdateMember_Load);
             this.ResumeLayout(false);

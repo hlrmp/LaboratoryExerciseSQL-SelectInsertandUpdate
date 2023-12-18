@@ -31,7 +31,7 @@ namespace LaboratoryExerciseSQL_SelectInsertandUpdate
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             FrmUpdateMember fupdate = new FrmUpdateMember();
-            fupdate.ShowDialog();
+            fupdate.Show();
 
 
 
@@ -42,6 +42,11 @@ namespace LaboratoryExerciseSQL_SelectInsertandUpdate
         {
             this.Close();
             
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            RefreshListOfClubMembers();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -73,6 +78,13 @@ namespace LaboratoryExerciseSQL_SelectInsertandUpdate
             clubRegistrationQuery = new ClubRegistrationQuery();
             RefreshListOfClubMembers();
             comboboxes();
+
+
+
+            Timer timer = new Timer();
+            timer.Interval = (1 * 1000);
+            timer.Tick += new EventHandler(timer1_Tick);
+            timer.Start();
 
         }
 
