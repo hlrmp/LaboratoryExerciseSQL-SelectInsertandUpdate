@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
@@ -17,16 +18,17 @@ namespace LaboratoryExerciseSQL_SelectInsertandUpdate
         public FrmUpdateMember()
         {
             InitializeComponent();
-         
 
+            stud();
         }
 
         private void FrmUpdateMember_Load(object sender, EventArgs e)
         {
             comboboxes();
             stud();
+            
             // textboxes();
-            clubRegistrationQuery.sId = cbStudentId.Text;  // something wrong
+            // clubRegistrationQuery.sId = cbStudentId.Text;  // something wrong
 
 
 
@@ -88,10 +90,10 @@ namespace LaboratoryExerciseSQL_SelectInsertandUpdate
 
         public void textboxes()
         {
+
             clubRegistrationQuery.DisplayText();
 
-             
-
+           
             txtFirstName.Text = clubRegistrationQuery._FirstName;
             txtMiddlName.Text = clubRegistrationQuery._MiddleName;
             txtLastName.Text = clubRegistrationQuery._LastName;
@@ -109,33 +111,41 @@ namespace LaboratoryExerciseSQL_SelectInsertandUpdate
             clubRegistrationQuery.DisplayList();
             cbStudentId.DataSource = clubRegistrationQuery.bindingSource;
             cbStudentId.DisplayMember = "Student_Id";
-
-           
+            //    clubRegistrationQuery.sId = cbStudentId.Text;  // something wrong
+            
 
         }
 
         private int ID, Age;
         private string FirstName, MiddleName, LastName, Gender, Program;
 
-        private void cbStudentId_SelectedIndexChanged(object sender, EventArgs e)
+        private void txtLastName_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            clubRegistrationQuery.sId = cbStudentId.Text;  // something wrong
-            // stud();
+            textboxes();
         }
 
+        private void cbStudentId_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           clubRegistrationQuery.sId = cbStudentId.Text;  // something wrong
+            
+           
+
+            // stud();
+        }
+   
         private void cbStudentId_SelectedValueChanged(object sender, EventArgs e)
         {
 
-            clubRegistrationQuery.sId = cbStudentId.Text;  // something wrong
-            
+              clubRegistrationQuery.sId = cbStudentId.Text;  // something wrong
+              
         }
 
         private void cbStudentId_MouseClick(object sender, MouseEventArgs e)
         {
-           
-           
-             textboxes();
+       
+            stud();
           
+            // 
 
         } 
 

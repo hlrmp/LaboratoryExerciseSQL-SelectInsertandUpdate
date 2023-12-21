@@ -82,7 +82,7 @@ namespace LaboratoryExerciseSQL_SelectInsertandUpdate
 
 
             Timer timer = new Timer();
-            timer.Interval = (1 * 1000);
+            timer.Interval = (2 * 1000);
             timer.Tick += new EventHandler(timer1_Tick);
             timer.Start();
 

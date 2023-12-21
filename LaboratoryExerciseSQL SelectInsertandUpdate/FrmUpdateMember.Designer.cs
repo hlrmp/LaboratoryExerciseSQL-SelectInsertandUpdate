@@ -111,6 +111,7 @@
             this.txtLastName.Name = "txtLastName";
             this.txtLastName.Size = new System.Drawing.Size(176, 22);
             this.txtLastName.TabIndex = 36;
+            this.txtLastName.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.txtLastName_MouseDoubleClick);
             // 
             // cbProgram
             // 
