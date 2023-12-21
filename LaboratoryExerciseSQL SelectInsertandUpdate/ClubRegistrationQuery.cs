@@ -92,8 +92,19 @@ namespace LaboratoryExerciseSQL_SelectInsertandUpdate
             return true;
 
         }
+        public int Count;
+        public int c()
+        {
+            
+            sqlConnect.Open();
+            SqlCommand comm = new SqlCommand("SELECT COUNT(*) FROM ClubMembers", sqlConnect);
+            sqlReader = comm.ExecuteReader();
+            sqlReader.Read();
+            Count = int.Parse(sqlReader[0].ToString());
+            sqlConnect.Close();
 
-
+            return Count;
+        }
 
 
         public bool RegisterStudent(int ID, long StudentID, string FirstName, string

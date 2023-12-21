@@ -15,10 +15,11 @@ namespace LaboratoryExerciseSQL_SelectInsertandUpdate
         public btnRegister()
         {
             InitializeComponent();
+         
         }
 
         private ClubRegistrationQuery clubRegistrationQuery;
-        private int ID, Age, count = 1;
+        private int ID, Age, count;
         private string FirstName, MiddleName,LastName, Gender, Program;
         private long StudentId;
 
@@ -58,6 +59,7 @@ namespace LaboratoryExerciseSQL_SelectInsertandUpdate
             }
             else
             {
+                RegistrationID();
 
                 StudentId = long.Parse(txtStudentId.Text);
                 FirstName = txtFirstName.Text;
@@ -67,7 +69,7 @@ namespace LaboratoryExerciseSQL_SelectInsertandUpdate
                 Gender = cbGender.Text;
                 Program = cbProgram.Text;
 
-                clubRegistrationQuery.RegisterStudent(ID: RegistrationID(), StudentId, FirstName, MiddleName, LastName, Age, Gender, Program);
+                clubRegistrationQuery.RegisterStudent(ID: count, StudentId, FirstName, MiddleName, LastName, Age, Gender, Program);
             }
             
         }
@@ -100,7 +102,9 @@ namespace LaboratoryExerciseSQL_SelectInsertandUpdate
         }
         public int RegistrationID()
         {
-            return ++count;
+            clubRegistrationQuery.c();
+           count =  clubRegistrationQuery.Count + 1;
+            return count;
         }
 
         public void comboboxes()
